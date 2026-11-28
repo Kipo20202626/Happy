@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diego Bakti Abdillah · 19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F7F8;--ink:#171717;--muted:#7A7A85;--line:#DEDEE3;--acc:#3D5AFE}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--ink:#F2F2F4;--muted:#8E8E99;--line:#2A2A30;--acc:#8EA0FF}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;min-height:100vh;line-height:1.5}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:4px;border-radius:4px}
+.wrap{max-width:560px;margin:0 auto;padding:28px 24px 80px}
+/* nav */
+nav{display:flex;gap:22px;position:relative;padding-bottom:10px;border-bottom:1px solid var(--line)}
+nav button{color:var(--muted);font-size:.95rem;font-weight:600;transition:color .3s}
+nav button.on{color:var(--ink)}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;background:var(--acc);width:0;transition:left .4s cubic-bezier(.6,0,.2,1),width .4s cubic-bezier(.6,0,.2,1)}
+/* views */
+.view{display:none;padding-top:56px}
+.view.active{display:block;animation:in .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+/* home */
+.name{font-size:1.05rem;font-weight:600;min-height:1.6em}
+.name span{display:inline-block;opacity:0;transform:translateY(8px);animation:ch .5s forwards}
+@keyframes ch{to{opacity:1;transform:none}}
+.big{font-size:clamp(8rem,38vw,13rem);font-weight:800;line-height:.9;letter-spacing:-.06em;margin:14px 0 6px -6px;font-variant-numeric:tabular-nums}
+.date{color:var(--muted)}
+.dots{display:grid;grid-template-columns:repeat(19,1fr);gap:6px;margin:36px 0 10px}
+.dots i{aspect-ratio:1;border-radius:50%;border:1.5px solid var(--line);transition:background .4s,border-color .4s,transform .4s}
+.dots i.f{background:var(--acc);border-color:var(--acc);transform:scale(1)}
+.cap{color:var(--muted);font-size:.85rem}
+.cd{margin-top:40px;display:flex;gap:28px}
+.cd div b{display:block;font-size:1.8rem;font-weight:300;font-variant-numeric:tabular-nums;line-height:1.1}
+.cd small{color:var(--muted);font-size:.8rem}
+.cd b.t{animation:tk .4s}
+@keyframes tk{from{opacity:.2;transform:translateY(-6px)}}
+.note{margin-top:16px;color:var(--muted);font-size:.9rem}
+/* picture */
+.pic{display:flex;flex-direction:column;gap:22px}
+.fr{margin:0;padding:8px;border:1px solid var(--line);border-radius:18px;background:var(--bg);opacity:0;transform:translateY(28px) scale(.98);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1);cursor:zoom-in}
+.fr.v{opacity:1;transform:none}
+.fr img{display:block;width:100%;height:auto;border-radius:11px}
+.fr figcaption{color:var(--muted);font-size:.8rem;padding:8px 4px 2px;display:flex;justify-content:space-between;align-items:center}
+.fr figcaption .lnk{font-size:.8rem}
+.tools{display:flex;gap:16px;align-items:center;margin:-8px 0 24px;min-height:1.6em}
+.tools input{display:none}
+.tools label{cursor:pointer}
+#pst{color:var(--muted);font-size:.85rem}
+.sk{height:220px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(100deg,transparent 30%,var(--line) 50%,transparent 70%) 0 0/250% 100%;animation:shm 1.4s linear infinite}
+@keyframes shm{to{background-position:-150% 0}}
+.empty{color:var(--muted);border:1px dashed var(--line);border-radius:16px;padding:24px;text-align:left}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:50;cursor:zoom-out}
+.lb.on{opacity:1;pointer-events:auto}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;transform:scale(.94);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.lb.on img{transform:none}
+/* ilustrasi */
+.hb{font-size:clamp(2.1rem,9vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:6px;animation:in .8s cubic-bezier(.2,.7,.2,1)}
+.hero{display:block;width:100%;max-width:340px;height:auto;margin:28px 0 0 -6px;color:var(--ink);overflow:visible}
+.hero *{vector-effect:non-scaling-stroke}
+.hero .ln{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero .ac{stroke:var(--acc);fill:none;stroke-width:2;stroke-linecap:round}
+.hero .fa{fill:var(--acc);fill-opacity:.14}
+.hero .fill{fill:var(--acc)}
+.hero .dr{stroke-dasharray:1;stroke-dashoffset:1}
+.hero.go .dr{animation:draw 1.4s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero .pop{opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+.hero.go .pop{animation:pp .6s 1.3s forwards}
+@keyframes pp{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:fk .8s ease-in-out infinite alternate}
+@keyframes fk{to{transform:scale(1.12,.88) rotate(4deg)}}
+.bal{transform-box:fill-box;transform-origin:50% 100%;animation:fy 5s ease-in-out infinite alternate}
+.bal.b2{animation-duration:6.5s;animation-delay:-2s}
+@keyframes fy{to{transform:translateY(-12px) rotate(3deg)}}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{50%{opacity:.15;transform:scale(.5) rotate(45deg)}}
+/* ikon fakta */
+.row button .t{display:flex;align-items:center;gap:16px}
+.ic{width:38px;height:38px;flex:none;color:var(--ink);overflow:visible;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.row.o .ic{transform:scale(1.18)}
+.ic .l{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic .a{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic .f{fill:var(--acc);stroke:none}
+.ic .m{transform-box:fill-box;transform-origin:center}
+.ic text{font:800 11px Manrope,system-ui,sans-serif;fill:currentColor}
+.i1 .m{animation:ar 1.8s ease-in-out infinite}
+@keyframes ar{40%{transform:translate(4px,-4px)}70%{transform:translate(-1px,1px)}}
+.i2 .m{animation:pu 2.2s ease-in-out infinite}
+@keyframes pu{50%{transform:scale(1.25);fill:var(--acc)}}
+.i3 .m{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.i4 .h{animation:hg 5s ease-in-out infinite}
+@keyframes hg{0%,80%{transform:rotate(0)}95%,100%{transform:rotate(180deg)}}
+.i4 .sd{animation:sf 1s linear infinite}
+@keyframes sf{from{transform:translateY(-3px);opacity:1}to{transform:translateY(8px);opacity:0}}
+.i5 .g{animation:gm 3s ease-in-out infinite}
+@keyframes gm{50%{transform:translateY(-3px) rotate(-3deg)}}
+.i5 .tw2{animation:tw 2s ease-in-out infinite}
+/* facts */
+h2{font-size:1.6rem;font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:4px 0 28px}
+.row{border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;text-align:left;font-weight:600}
+.row button::after{content:"+";color:var(--muted);font-weight:300;font-size:1.4rem;transition:transform .35s}
+.row.o button::after{transform:rotate(45deg)}
+.row .b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.row.o .b{grid-template-rows:1fr}
+.row .bi{overflow:hidden;opacity:0;transition:opacity .4s}
+.row.o .bi{opacity:1;padding-bottom:20px}
+.bi>p{color:var(--muted)}
+.art{margin:2px 0 14px;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;justify-content:center;align-items:center;min-height:150px}
+.art svg{width:100%;max-width:290px;height:auto;overflow:visible;color:var(--ink)}
+.art .l{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.art .a{fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.art .f{fill:var(--acc)}
+.art text{font-family:Manrope,system-ui,sans-serif;fill:currentColor}
+.art .m{transform-box:fill-box;transform-origin:center}
+.art .tw3{animation:tw 2s ease-in-out infinite}
+.shoot{opacity:0}
+.row.o .shoot{animation:sh 1s cubic-bezier(.2,.9,.2,1) .15s both}
+@keyframes sh{from{transform:translateX(-170px);opacity:0}to{transform:none;opacity:1}}
+.row.o .tg{animation:wb .6s 1s both;transform-origin:206px 55px}
+@keyframes wb{40%{transform:scale(1.1)}}
+.row.o .cal{animation:swg 1s cubic-bezier(.3,1.5,.5,1) both;transform-origin:110px 8px}
+@keyframes swg{from{transform:rotate(-12deg);opacity:0}}
+.stm{animation:stm 2.2s ease-in-out infinite}
+@keyframes stm{0%{opacity:0;transform:translateY(5px)}50%{opacity:1}100%{opacity:0;transform:translateY(-7px)}}
+.pw{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.pd{display:grid;gap:6px;grid-template-columns:repeat(4,14px);justify-content:center;min-height:132px;align-content:center}
+.pd i{width:14px;height:14px;border-radius:50%;background:var(--ink);opacity:.8;animation:pp2 .45s both}
+.pd i.lf{background:var(--acc);opacity:1}
+@keyframes pp2{from{transform:scale(.2)}}
+.yw{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px}
+.cn{color:var(--muted)}
+.cn b{font-size:2.3rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.yr{display:grid;grid-template-columns:repeat(19,1fr);gap:3px;width:100%;padding-top:10px}
+.yr i{height:30px;border-radius:3px;background:var(--line);position:relative;transition:background .3s}
+.row.o .yr i{background:var(--acc);transition-delay:calc(var(--k)*50ms)}
+.yr i.k::before{content:"";position:absolute;top:-9px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ink)}
+.fw{transform-origin:80px 60px;animation:spin 14s linear infinite}
+.gem{animation:gf 3s ease-in-out infinite}
+@keyframes gf{50%{transform:translateY(-5px)}}
+/* wishes */
+.card{border:1px solid var(--line);border-radius:16px;padding:28px 24px;min-height:120px;display:flex;align-items:center;font-size:1.25rem;font-weight:300;line-height:1.4}
+.card.sw{animation:sw .5s}
+@keyframes sw{from{opacity:0;transform:translateY(10px)}}
+.act{margin-top:16px;display:flex;gap:18px;align-items:center}
+.lnk{color:var(--acc);font-weight:600;border-bottom:1px solid transparent;transition:border-color .25s}
+.lnk:hover{border-color:var(--acc)}
+.fm{margin-top:40px;display:flex;gap:12px;border-bottom:1px solid var(--line);transition:border-color .3s}
+.fm:focus-within{border-color:var(--acc)}
+.fm input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:inherit;padding:10px 0;outline:0}
+.fm input::placeholder{color:var(--muted)}
+ul{list-style:none;padding:0;margin-top:8px}
+li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;animation:li .5s}
+li button{color:var(--muted);font-size:.85rem}
+@keyframes li{from{opacity:0;transform:translateX(-10px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav id="nav">
+  <button data-v="home" class="on">Beranda</button>
+  <button data-v="facts">Fakta</button>
+  <button data-v="wish">Ucapan</button>
+  <button data-v="pic">Picture</button>
+  <span id="bar"></span>
+</nav>
+
+<section class="view active" id="home">
+  <h1 class="hb">Happy Birthday</h1>
+  <p class="name" id="nm" aria-label="Diego Bakti Abdillah"></p>
+  <div class="big" id="big">0</div>
+  <p class="date">Senin, 30 November 2026</p>
+  <svg class="hero" id="hero" viewBox="0 0 340 170" role="img" aria-label="Ilustrasi kue ulang tahun dan balon">
+    <g class="bal"><ellipse class="fa ac dr" pathLength="1" cx="52" cy="58" rx="22" ry="28"/><path class="ac dr" pathLength="1" d="M52 86 q-7 22 5 46"/></g>
+    <g class="bal b2"><ellipse class="fa ac dr" pathLength="1" cx="292" cy="48" rx="18" ry="24"/><path class="ac dr" pathLength="1" d="M292 72 q8 20 -4 44"/></g>
+    <path class="ln dr" pathLength="1" d="M74 148 H266"/>
+    <rect class="ln dr" pathLength="1" x="100" y="104" width="140" height="44" rx="6"/>
+    <rect class="ln dr" pathLength="1" x="120" y="76" width="100" height="28" rx="6"/>
+    <path class="ac dr" pathLength="1" d="M120 88 q12.5 14 25 0 t25 0 t25 0 t25 0"/>
+    <rect class="ln dr" pathLength="1" x="167" y="54" width="6" height="22" rx="2"/>
+    <g class="pop"><g class="flame"><path class="fill" d="M170 34 c7 8 8 14 0 18 c-8 -4 -7 -10 0 -18z"/></g></g>
+    <g class="tw" style="animation-delay:-.6s"><path class="ac" d="M118 32 v10 M113 37 h10"/></g>
+    <g class="tw" style="animation-delay:-1.6s"><path class="ac" d="M232 20 v8 M228 24 h8"/></g>
+  </svg>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <p class="cap">19 tahun berjalan</p>
+  <div class="cd" id="cd"></div>
+  <p class="note" id="cm"></p>
+</section>
+
+<section class="view" id="facts">
+  <h2>Fakta tentang 19</h2>
+  <p class="sub">Tap aja buat buka.</p>
+  <div id="fl"></div>
+</section>
+
+<section class="view" id="wish">
+  <h2>Ucapan</h2>
+  <p class="sub">Doa buat lo di umur 19.</p>
+  <div class="card" id="card">Semoga cita-cita lo satu-satu kecapai, dan capeknya kebayar semua.</div>
+  <div class="act"><button class="lnk" id="next">Doa lainnya</button></div>
+  <div class="fm"><input id="wi" maxlength="90" placeholder="Tulis ucapan lo" aria-label="Ucapan"><button class="lnk" id="post">Tambah</button></div>
+  <ul id="ul"></ul>
+</section>
+  <section class="view" id="pic">
+    <h2>Picture</h2>
+    <p class="sub">Geser ke bawah buat lihat semuanya.</p>
+    <div class="tools"><label class="lnk" for="pf">+ Tambah foto</label><input type="file" id="pf" accept="image/*" multiple><span id="pst" role="status"></span></div>
+    <div class="pic" id="plist"></div>
+  </section>
+</div>
+<div class="lb" id="lb" aria-hidden="true"><img alt=""></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const raf=f=>requestAnimationFrame(f);
+
+/* navigasi + indikator */
+function bar(){const b=$('#nav button.on'),s=$('#bar');s.style.left=b.offsetLeft+'px';s.style.width=b.offsetWidth+'px'}
+function go(v){$$('.view').forEach(s=>s.classList.toggle('active',s.id===v));
+  $$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));bar();scrollTo({top:0});
+  if(v==='home')intro();if(v==='pic')loadPics();history.replaceState(null,'','#'+v)}
+$$('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+addEventListener('resize',bar);
+
+/* beranda */
+const NAME='Diego Bakti Abdillah';
+$('#nm').innerHTML=[...NAME].map((c,i)=>`<span style="animation-delay:${i*40}ms">${c===' '?'&nbsp;':c}</span>`).join('');
+$('#dots').innerHTML='<i></i>'.repeat(19);
+let timers=[];
+function intro(){timers.forEach(clearTimeout);timers=[];
+  const big=$('#big'),dots=$$('#dots i');dots.forEach(d=>d.classList.remove('f'));
+  const t0=performance.now(),D=1100;
+  (function step(t){const p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,3);big.textContent=Math.round(19*e);if(p<1)raf(step)})(t0);
+  dots.forEach((d,i)=>timers.push(setTimeout(()=>d.classList.add('f'),300+i*55)));
+  const hr=$('#hero');hr.classList.remove('go');void hr.getBoundingClientRect();hr.classList.add('go');
+  const nm=$$('#nm span');nm.forEach(s=>{s.style.animation='none';void s.offsetWidth;s.style.animation=''})}
+const U=['hari','jam','menit','detik'];
+$('#cd').innerHTML=U.map(u=>`<div><b>00</b><small>${u}</small></div>`).join('');
+let prev=[];
+function cd(){const n=new Date(),y=n.getFullYear();let t=new Date(y,10,30);const end=new Date(y,11,1);
+  if(n>=end)t=new Date(y+1,10,30);const today=n>=t&&n<end,d=today?0:t-n;
+  const v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1e3)%60];
+  $$('.cd b').forEach((b,i)=>{if(prev[i]!==v[i]){b.textContent=String(v[i]).padStart(2,'0');b.classList.remove('t');void b.offsetWidth;b.classList.add('t')}});
+  prev=v;$('#cm').textContent=today?'Hari ini. Selamat ulang tahun.':'Menuju 30 November.'}
+cd();setInterval(cd,1000);
+
+/* fakta */
+const IC=[`<svg class="ic i1" viewBox="0 0 40 40" aria-hidden="true"><path class="l" d="M6 34 H34" opacity=".35"/><g class="m"><path class="a" d="M10 30 L32 8 M32 8 h-9 M32 8 v9"/><path class="a" d="M10 30 l-1 -5 M10 30 l5 1"/></g></svg>`,`<svg class="ic i2" viewBox="0 0 40 40" aria-hidden="true"><rect class="l" x="6" y="9" width="28" height="26" rx="4"/><path class="l" d="M6 17 H34 M13 5 V12 M27 5 V12"/><g class="m"><text x="20" y="30" text-anchor="middle">30</text></g></svg>`,`<svg class="ic i3" viewBox="0 0 40 40" aria-hidden="true"><g class="m"><circle class="a" cx="20" cy="20" r="16" stroke-dasharray="4 5"/></g><text x="20" y="24" text-anchor="middle">19</text></svg>`,`<svg class="ic i4" viewBox="0 0 40 40" aria-hidden="true"><g class="m h"><path class="l" d="M11 5 H29 M11 35 H29 M13 5 C13 15 20 16 20 20 C20 24 13 25 13 35 M27 5 C27 15 20 16 20 20 C20 24 27 25 27 35"/><circle class="f sd" cx="20" cy="22" r="1.8"/><path class="a" d="M16 33 H24"/></g></svg>`,`<svg class="ic i5" viewBox="0 0 40 40" aria-hidden="true"><g class="m g"><path class="l" d="M12 11 H28 L35 20 L20 36 L5 20 Z"/><path class="a" d="M5 20 H35 M16 11 L13 20 L20 36 M24 11 L27 20 L20 36"/></g><g class="m tw2"><path class="a" d="M33 5 v7 M29.5 8.5 h7"/></g></svg>`];
+const ART=[`<svg viewBox="0 0 260 110" aria-hidden="true"><g class="m tw3"><path class="a" d="M36 20v10M31 25h10"/></g><g class="m tw3" style="animation-delay:-1s"><path class="a" d="M110 14v8M106 18h8"/></g><g class="m tw3" style="animation-delay:-.5s"><path class="a" d="M70 92v8M66 96h8"/></g><g class="tg"><circle class="l" cx="206" cy="55" r="40"/><circle class="l" cx="206" cy="55" r="27"/><circle class="l" cx="206" cy="55" r="14"/><circle class="f" cx="206" cy="55" r="5"/></g><g class="shoot"><path class="a" d="M24 55H206M206 55l-9-6M206 55l-9 6M24 55l-8-6M24 55l-8 6M34 55l-8-6M34 55l-8 6"/></g></svg>`,`<svg viewBox="0 0 260 120" aria-hidden="true"><g class="cal"><rect class="l" x="60" y="10" width="100" height="104" rx="10" style="fill:var(--bg)"/><path d="M60 38V20a10 10 0 0 1 10-10H150a10 10 0 0 1 10 10V38z" style="fill:var(--acc)"/><text x="110" y="29" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--bg)">November</text><text x="110" y="84" text-anchor="middle" font-size="44" font-weight="800">30</text><text x="110" y="104" text-anchor="middle" font-size="12" style="fill:var(--muted)">Senin</text><path class="l" d="M85 4V16M135 4V16"/></g><path class="a stm" d="M192 66q-4-6 0-10t0-9"/><path class="a stm" style="animation-delay:-.7s" d="M206 66q-4-6 0-10t0-9"/><path class="a stm" style="animation-delay:-1.3s" d="M220 66q-4-6 0-10t0-9"/><path class="l" d="M184 74H228V92a14 14 0 0 1-14 14H198a14 14 0 0 1-14-14z"/><path class="l" d="M228 80h4a8 8 0 0 1 0 16h-4"/></svg>`,`<div class="pw"><div class="pd">${"<i></i>".repeat(19)}</div><span class="cap pc"></span></div>`,`<div class="yw"><div class="cn"><b class="cu">0</b> hari</div><div class="yr">${Array.from({length:19},(_,i)=>`<i style="--k:${i}" class="${i%4===0?"k":""}"></i>`).join("")}</div><span class="cap">19 tahun, titik hitam = tahun kabisat</span></div>`,`<svg viewBox="0 0 260 120" aria-hidden="true"><g class="fw" style="fill:var(--acc);fill-opacity:.14;stroke:var(--acc);stroke-width:1.6"><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(0 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(30 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(60 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(90 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(120 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(150 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(180 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(210 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(240 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(270 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(300 80 60)"/><ellipse cx="80" cy="38" rx="6" ry="20" transform="rotate(330 80 60)"/></g><circle class="f" cx="80" cy="60" r="7"/><g class="gem"><path class="l" d="M160 40H200L214 58L180 94L146 58Z"/><path class="a" d="M146 58H214M167 40L160 58L180 94M193 40L200 58L180 94"/></g><g class="m tw3"><path class="a" d="M230 26v10M225 31h10"/></g></svg>`];
+const F=[['Sagitarius','Lahir 30 November berarti lo Sagitarius. Katanya anaknya optimis, suka tantangan, dan nggak betah diem di satu tempat. Cocok lah buat yang lagi ngejar cita-cita.'],
+['Hari Senin','30 November 2026 jatuh di hari Senin. Ulang tahun pas awal minggu, ya sekalian start baru lah. Semoga kerjaan nggak numpuk wkwk.'],
+['Bilangan prima','19 itu bilangan prima, jadi nggak bisa dibagi rata sama angka apa pun selain 1 dan dirinya sendiri. Coba bagi sendiri, pasti ada sisanya.'],
+['Sekitar 6.940 hari','Segitu kira-kira hari yang udah lo lewatin sampai sekarang, udah termasuk 5 kali tahun kabisat. Banyak juga ya, padahal berasa baru kemarin.'],
+['Batu dan bunga','Batu kelahiran November itu topaz atau citrine, bunganya krisan. Lumayan buat info random.']];
+$('#fl').innerHTML=F.map((f,i)=>`<div class="row" data-i="${i}"><button aria-expanded="false"><span class="t">${IC[i]}${f[0]}</span></button><div class="b"><div class="bi"><div class="art">${ART[i]}</div><p>${f[1]}</p></div></div></div>`).join('');
+let pt;
+function prime(r){const g=r.querySelector('.pd'),d=[...g.children],c=r.querySelector('.pc'),ns=[3,4,5,6,7];let k=0;clearInterval(pt);
+  const show=()=>{const n=ns[k++%ns.length],full=Math.floor(19/n)*n;g.style.gridTemplateColumns=`repeat(${n},14px)`;
+    d.forEach((x,i)=>{x.classList.toggle('lf',i>=full);x.style.animation='none';void x.offsetWidth;x.style.animation=''});
+    c.textContent=`Dibagi ${n} kolom: sisa ${19-full}`};show();pt=setInterval(show,1800)}
+function countUp(r){const el=r.querySelector('.cu'),t0=performance.now();
+  (function st(t){const p=Math.min(1,(t-t0)/1500);el.textContent=Math.round(6940*(1-Math.pow(1-p,3))).toLocaleString('id-ID');if(p<1)raf(st)})(t0)}
+$$('.row button').forEach(b=>b.onclick=()=>{const r=b.parentElement,o=r.classList.toggle('o'),i=+r.dataset.i;b.setAttribute('aria-expanded',o);
+  if(i===2){o?prime(r):clearInterval(pt)}if(i===3&&o)countUp(r)});
+
+/* ucapan */
+const W=["Semoga cita-cita lo satu-satu kecapai, dan capeknya kebayar semua.","Semoga makin semangat kerjanya, makin gigih, hasilnya juga makin kelihatan.","Semoga kariernya lancar, rezeki ngalir terus, dan kerja keras lo dihargai.","Udah 19 aja. Semoga makin dewasa tapi tetep santai, jangan lupa istirahat juga.","Semoga nggak gampang nyerah. Capek boleh, berhenti jangan.","Semoga mimpi-mimpi lo makin deket dan lo makin yakin sama jalan yang lo pilih.","Sehat terus ya biar semangatnya awet. Panjang umur dan sukses selalu, Diego!"];
+let wi=0;const card=$('#card');
+$('#next').onclick=()=>{wi=(wi+1)%W.length;card.textContent=W[wi];card.classList.remove('sw');void card.offsetWidth;card.classList.add('sw')};
+function add(){const i=$('#wi'),t=i.value.trim();if(!t)return;
+  const li=document.createElement('li'),s=document.createElement('span'),x=document.createElement('button');
+  s.textContent=t;x.textContent='Hapus';x.onclick=()=>{li.style.transition='.3s';li.style.opacity=0;setTimeout(()=>li.remove(),300)};
+  li.append(s,x);$('#ul').prepend(li);i.value=''}
+$('#post').onclick=add;$('#wi').onkeydown=e=>{if(e.key==='Enter')add()};
+
+/* picture: disimpan di Cloudflare Workers KV (gratis, permanen, tampil di semua perangkat) */
+const API='https://foto-diego.kipo20202626.workers.dev'; // isi dengan URL Worker, contoh: https://foto-diego.namamu.workers.dev
+const apiOK=()=>!!API;
+const imgUrl=id=>`${API.replace(/\/$/,'')}/img/${encodeURIComponent(id)}`;
+const st=t=>{$('#pst').textContent=t};
+let picDone=false;
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.08}):null;
+const fmt=d=>new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+function emptyMsg(){$('#plist').innerHTML=`<p class="empty">${apiOK()?'Belum ada foto. Tap "+ Tambah foto" buat mulai.':'Worker belum disambungkan. Isi API di index.html.'}</p>`}
+function addPic(id,t){const box=$('#plist');box.querySelector('.sk,.empty')?.remove();
+  const f=document.createElement('figure');f.className='fr';
+  const img=new Image();img.src=imgUrl(id);img.alt='Foto '+fmt(t);img.decoding='async';
+  const c=document.createElement('figcaption'),s=document.createElement('span'),x=document.createElement('button');
+  s.textContent=fmt(t);x.className='lnk';x.textContent='Hapus';
+  x.onclick=async e=>{e.stopPropagation();if(!confirm('Hapus foto ini?'))return;x.textContent='...';
+    try{const r=await fetch(imgUrl(id),{method:'DELETE'});if(!r.ok)throw 0;
+      f.style.transition='opacity .3s';f.style.opacity=0;setTimeout(()=>{f.remove();if(!box.querySelector('.fr'))emptyMsg()},300)}
+    catch{x.textContent='Hapus';st('Gagal menghapus, coba lagi.')}};
+  c.append(s,x);f.append(img,c);
+  f.onclick=()=>{const l=$('#lb');l.firstElementChild.src=img.src;l.classList.add('on');l.setAttribute('aria-hidden','false')};
+  box.append(f);io?io.observe(f):f.classList.add('v')}
+async function loadPics(){if(picDone)return;
+  if(!apiOK()){emptyMsg();return}
+  picDone=true;$('#plist').innerHTML='<div class="sk"></div>';
+  try{const r=await fetch(API.replace(/\/$/,'')+'/list');if(!r.ok)throw 0;const L=await r.json();
+    if(!L.length)emptyMsg();else L.forEach(o=>addPic(o.id,o.t))}
+  catch{picDone=false;$('#plist').innerHTML='<p class="empty">Gagal memuat foto. Cek koneksi lalu buka tab ini lagi.</p>'}}
+function shrink(file){return new Promise((ok,no)=>{const u=URL.createObjectURL(file),i=new Image();
+  i.onload=()=>{const k=Math.min(1,1600/Math.max(i.width,i.height)),c=document.createElement('canvas');
+    c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);
+    URL.revokeObjectURL(u);c.toBlob(b=>b?ok(b):no(),'image/jpeg',.82)};
+  i.onerror=no;i.src=u})}
+$('#pf').onchange=async e=>{const fs=[...e.target.files];e.target.value='';if(!fs.length)return;
+  if(!apiOK()){st('Worker belum disambungkan.');return}
+  let ok=0;
+  for(let k=0;k<fs.length;k++){st(`Mengunggah ${k+1}/${fs.length}...`);
+    try{const b=await shrink(fs[k]);
+      const r=await fetch(API.replace(/\/$/,'')+'/upload',{method:'POST',headers:{'Content-Type':'image/jpeg'},body:b});
+      if(!r.ok)throw 0;const o=await r.json();addPic(o.id,o.t);ok++}
+    catch{st('Ada foto yang gagal diunggah.')}}
+  if(ok===fs.length)st('Tersimpan.')};
+const lb=$('#lb');const closeLb=()=>{lb.classList.remove('on');lb.setAttribute('aria-hidden','true')};
+lb.onclick=closeLb;addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+/* mulai */
+const h=location.hash.slice(1);
+document.fonts.ready.then(()=>{if(['facts','wish','pic'].includes(h))go(h);else{bar();intro()}});
+</script>
+</body>
+</html>
